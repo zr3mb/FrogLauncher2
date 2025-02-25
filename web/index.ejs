@@ -158,7 +158,7 @@
             $("html").addClass("noEffects");
         }
 
-        if (!IS_APP_IN_DEV) {
+        if (!IS_APP_IN_DEV && FrogConfig.read("disableStartupAnimation", false) !== true) {
             // Запустить загрузочную анимацию
             FrogUI.startLoadScreenAnimation();
             // Показываем окно
