@@ -23,3 +23,12 @@
     opacity: 0.88;
     font-weight: 400 !important;
 }
+
+#modal-settings .settings-item .wallpapers-list-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: end;
+    align-items: center;
+    max-width: 50%;
+}

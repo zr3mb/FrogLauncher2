@@ -36,7 +36,7 @@
 }
 
 #modal-settings .settings-item .name {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 14pt;
 }
 
@@ -49,8 +49,9 @@
 
 #modal-settings .settings-item .icon {
     background: var(--theme-primaryBgLighter);
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
+    aspect-ratio: 1/1;
     display: flex;
     align-items: center;
     justify-content: center;
