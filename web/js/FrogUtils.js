@@ -276,4 +276,17 @@ class FrogUtils {
             return path.join(GAME_DATA, "modpacks", parsedVersionId.name);
         }
     }
+
+    // Таймаут для промиса (дефолтный таймаут = 4 сек)
+    static promiseWithTimeout = (promise, timeout = 4000) => {
+        // Создаем промис, который завершится через указанное время
+        const timeoutPromise = new Promise((resolve) => {
+            setTimeout(() => {
+                console.log(`Timeout ${timeout} ms expired for promise`);
+                console.log(promise);
+                resolve([])
+            }, timeout);  // Возвращаем пустой массив по истечении таймаута
+        });
+        return Promise.race([promise, timeoutPromise]);
+    }
 }

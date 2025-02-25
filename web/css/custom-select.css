@@ -29,7 +29,7 @@ select.custom-select {
     grid-template-columns: 40px 1fr max-content;
     grid-template-rows: max-content max-content;
     grid-auto-columns: 1fr;
-    gap: 0 6px;
+    gap: 0 12px;
     grid-auto-flow: row;
     align-content: center;
     grid-template-areas:

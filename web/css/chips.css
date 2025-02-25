@@ -22,8 +22,9 @@
 }
 
 .chip.large {
-    font-size: 18pt;
-    padding: 8px 16px;
+    font-size: 17pt;
+    padding: 6px 16px;
+    gap: 8px;
 }
 
 .chip.pill {

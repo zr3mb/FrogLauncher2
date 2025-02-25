@@ -47,7 +47,7 @@ html.light .flymenu .item:not(.active):hover {
 
 .flymenu .item.active {
     background: var(--theme-primary);
-    box-shadow: var(--theme-primaryDarker) 0 0 24px;
+    box-shadow: var(--theme-primaryDarker) 0 0 48px;
 }
 
 .flymenu .item.active,

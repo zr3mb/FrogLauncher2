@@ -8,95 +8,100 @@ class FrogVersionsUI {
     }
 
     // Загрузить список версий в UI
-    static loadVersions = () => {
+    static loadVersions = async () => {
+        const $versionsList = $("#modal-versions .versions-list");
+
+        // Показываем и скрываем нужное и ненужное
         $(".flyout #versionSelectPlaceholder").show();
-        $(".flyout #versionSelect").hide();
-        $(".flyout #playButton").hide();
+        $(".flyout #versionSelect, .flyout #playButton").hide();
 
-        $("#modal-versions .versions-list .item").unbind("click");
-        $("#modal-versions .versions-list .item:not(.placeholder)").remove();
+        // Очищаем список версий и показываем прелоадер
+        $versionsList.find(".item").unbind("click");
+        $versionsList.find(".item:not(.placeholder)").remove();
         $("#modal-versions .preloader").show();
-        $("#modal-versions .versions-list").hide();
-        return new Promise((resolve) => {
-            FrogVersionsManager.getPreparedVersions().then(versions => {
-                // Получаем код placeholder`а
-                let placeholder = $("#modal-versions .versions-list .item.placeholder")[0].outerHTML;
-                let activeVersion = FrogVersionsManager.getActiveVersion();
-                placeholder = placeholder.replace(' placeholder', "");
-                // По placeholder`у добавляем новые элементы
+        $versionsList.hide();
 
-                // Если включено избранное
-                let favoritesAllowed = FrogVersionsManager.getFavoriteVersions();
-                let installedOnly = FrogVersionsUI.getVersionsTypeSelected().includes("installed");
-                let onlyFavorites = FrogVersionsUI.getVersionsTypeSelected().includes("favorite");
+        try {
+            // Получаем все данные для загрузки
+            const versions = await FrogVersionsManager.getPreparedVersions();
+            const placeholder = $versionsList.find(".item.placeholder")[0].outerHTML.replace(' placeholder', '');
+            const activeVersion = FrogVersionsManager.getActiveVersion();
+            const favoritesAllowed = FrogVersionsManager.getFavoriteVersions();
+            const installedOnly = FrogVersionsUI.getVersionsTypeSelected().includes("installed");
+            const onlyFavorites = FrogVersionsUI.getVersionsTypeSelected().includes("favorite");
 
-                Object.values(versions).forEach((ver) => {
-                    let versionIcon = "assets/versions/" + ver.type + ".webp";
+            // Добавляем версии в список
+            Object.values(versions).forEach(ver => {
+                if ((!onlyFavorites || favoritesAllowed.includes(ver.id)) && (!installedOnly || ver.installed)) {
+                    let versionIcon = ver.type === "pack" ? "assets/icon.png" : `assets/versions/${ver.type}.webp`;
                     let displayName = ver.displayName;
+
+                    // Если это модпак - получаем его данные
                     if (ver.type === "pack") {
-                        versionIcon = "assets/icon.png";
-
-                        let modpackData = FrogPacks.getModpackManifest(ver.id.replace("pack-", ""));
-                        if (typeof modpackData.icon !== "undefined" && modpackData.icon !== false) {
+                        const modpackData = FrogPacks.getModpackManifest(ver.id.replace("pack-", ""));
+                        if (modpackData.icon && modpackData.icon !== "pack") {
                             versionIcon = modpackData.icon;
-
-                            if (modpackData.icon === "pack") {
-                                versionIcon = path.join(GAME_DATA, "modpacks", modpackData.id, "icon.png");
-                            }
+                        } else if (modpackData.icon === "pack") {
+                            versionIcon = path.join(GAME_DATA, "modpacks", modpackData.id, "icon.png");
                         }
-
-                        if (displayName.indexOf(modpackData.baseVersion.number) === -1) {
-                            // Добавляем в название версию игры, если её там нет
+                        if (!displayName.includes(modpackData.baseVersion.number)) {
                             displayName += ` (${modpackData.baseVersion.number})`;
                         }
                     }
-                    if ((!onlyFavorites || (onlyFavorites && favoritesAllowed.includes(ver.id))) && (!installedOnly || (installedOnly && ver.installed === true))) {
-                        let preparedPlaceholder = placeholder.replaceAll("$1", displayName).replaceAll("$2", ver.type).replaceAll("$3", ver.id).replaceAll("$4", ver.installed).replaceAll("$5", versionIcon);
-                        $("#modal-versions .versions-list").append(preparedPlaceholder);
-                    }
-                })
 
-                // Помечаем нужные аккаунты в списке активными
-                $("#modal-versions .versions-list .item").each(function () {
-                    if (!$(this).hasClass("placeholder")) {
-                        if ($(this).data("version") === activeVersion) {
-                            $(this).addClass("active");
-                        }
-                        if (favoritesAllowed.includes($(this).data("version"))) {
-                            $(this).children(".favorite").addClass("active");
-                        }
-                        $(this).show();
-                    }
-                })
+                    // Заполняем и добавляем плейсхолдер
+                    const preparedPlaceholder = placeholder
+                        .replaceAll("$1", displayName)
+                        .replaceAll("$2", ver.type)
+                        .replaceAll("$3", ver.id)
+                        .replaceAll("$4", ver.installed)
+                        .replaceAll("$5", versionIcon);
+                    $versionsList.append(preparedPlaceholder);
+                }
+            });
 
-                // Биндим клик на смену версии
-                $("#modal-versions .versions-list .item").click(function () {
-                    $("#modal-versions .versions-list .item.active").removeClass("active");
-                    $(this).addClass("active");
-                    FrogVersionsManager.setActiveVersion($(this).data("version"));
-                    FrogVersionsUI.clearSearch();
-                    FrogModals.hideModal("versions");
-                })
-
-                $("#modal-versions .versions-list .item .favorite").click(function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    let versionId = $(this).parent().data("version");
-                    FrogVersionsManager.addOrRemoveFavorite(versionId);
-                    if (!$(this).hasClass("active")) {
+            // Помечаем активные версии и избранные
+            $versionsList.find(".item").each(function () {
+                if (!$(this).hasClass("placeholder")) {
+                    if ($(this).data("version") === activeVersion) {
                         $(this).addClass("active");
-                    } else {
-                        $(this).removeClass("active");
                     }
-                })
+                    if (favoritesAllowed.includes($(this).data("version"))) {
+                        $(this).find(".favorite").addClass("active");
+                    }
+                    $(this).show();
+                }
+            });
 
-                $("#modal-versions .preloader").hide();
-                $("#modal-versions .versions-list").show();
-                FrogVersionsUI.reloadButtonUI();
-                resolve(true);
-            })
-        })
-    }
+            // Вешаем клики на выбор версии
+            $versionsList.find(".item").click(function () {
+                $versionsList.find(".item.active").removeClass("active");
+                $(this).addClass("active");
+                FrogVersionsManager.setActiveVersion($(this).data("version"));
+                FrogVersionsUI.clearSearch();
+                FrogModals.hideModal("versions");
+            });
+
+            // Вешаем клики на избранное
+            $versionsList.find(".item .favorite").click(function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const versionId = $(this).parent().data("version");
+                FrogVersionsManager.addOrRemoveFavorite(versionId);
+                $(this).toggleClass("active");
+            });
+
+            // Всё готово
+            $("#modal-versions .preloader").hide();
+            $versionsList.show();
+            FrogVersionsUI.reloadButtonUI();
+            return true;
+        } catch (error) {
+            console.error("Error loading versions:", error);
+            FrogAlerts.create("Ошибка!", "Не удалось загрузить список версий", "Понятно", "error");
+            return false;
+        }
+    };
 
     // Перезагрузить кнопку в Flyout (при смене активной версии)
     static reloadButtonUI = () => {

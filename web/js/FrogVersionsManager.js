@@ -92,22 +92,49 @@ class FrogVersionsManager {
 
     // Получить все доступные версии игры всех загрузчиков
     static getAllVersionsAvailable = async (vanillaVersionsType = ["release"]) => {
-        let vanillaVersions = await FrogVersionsManager.getVanillaVersionsAvailable(vanillaVersionsType);
-        let fabricVersions = await FrogVersionsManager.getFabricVersionsAvailable();
-        let forgeVersions = await FrogVersionsManager.getForgeVersionsAvailable();
-        let neoforgeVersions = await FrogVersionsManager.getNeoForgeVersionsAvailable();
-        let quiltVersions = await FrogVersionsManager.getQuiltVersionsAvailable()
-        let forgeOptiFineVersions = await FrogVersionsManager.getOptiFineVersionsAvailable();
+        try {
+            // Запускаем все асинхронные операции параллельно
+            const results = await Promise.allSettled([
+                FrogUtils.promiseWithTimeout(FrogVersionsManager.getVanillaVersionsAvailable(vanillaVersionsType)),
+                FrogUtils.promiseWithTimeout(FrogVersionsManager.getFabricVersionsAvailable()),
+                FrogUtils.promiseWithTimeout(FrogVersionsManager.getForgeVersionsAvailable()),
+                FrogUtils.promiseWithTimeout(FrogVersionsManager.getNeoForgeVersionsAvailable()),
+                FrogUtils.promiseWithTimeout(FrogVersionsManager.getQuiltVersionsAvailable()),
+                FrogUtils.promiseWithTimeout(FrogVersionsManager.getOptiFineVersionsAvailable()),
+            ]);
 
-        return {
-            vanilla: vanillaVersions,
-            fabric: fabricVersions,
-            forge: forgeVersions,
-            neoforge: neoforgeVersions,
-            quilt: quiltVersions,
-            forgeOptiFine: forgeOptiFineVersions
+            // Собираем результаты
+            const [
+                vanillaVersions,
+                fabricVersions,
+                forgeVersions,
+                neoforgeVersions,
+                quiltVersions,
+                forgeOptiFineVersions,
+            ] = results.map((result) => (result.status === 'fulfilled' ? result.value : []));
+
+            // Возвращаем
+            return {
+                vanilla: vanillaVersions,
+                fabric: fabricVersions,
+                forge: forgeVersions,
+                neoforge: neoforgeVersions,
+                quilt: quiltVersions,
+                forgeOptiFine: forgeOptiFineVersions,
+            };
+        } catch (error) {
+            // Если что-то очень сильно пошло не так :)
+            console.error('Unexpected error:', error);
+            return {
+                vanilla: [],
+                fabric: [],
+                forge: [],
+                neoforge: [],
+                quilt: [],
+                forgeOptiFine: [],
+            };
         }
-    }
+    };
 
     // Получить список установленных версий
     static getInstalledVersionsList = () => {
