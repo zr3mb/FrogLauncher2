@@ -176,6 +176,10 @@
           "title": "Animationen deaktivieren",
           "description": "Alle Animations- und Übergangszeiten sind auf ein Minimum reduziert"
         },
+        "disableStartupAnimation": {
+          "title": "Startanimation deaktivieren",
+          "description": "Entfernt die Startanimation und verkürzt dadurch die Ladezeit des Launchers"
+        },
         "fontFamily": {
           "title": "Primäre Schnittstellenschriftart"
         }

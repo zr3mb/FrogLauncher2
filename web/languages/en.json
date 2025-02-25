@@ -176,6 +176,10 @@
           "title": "Disable animations",
           "description": "The time of all animations and transitions is reduced to a minimum"
         },
+        "disableStartupAnimation": {
+          "title": "Disable startup animation",
+          "description": "Removes startup animation, thereby reducing launcher loading time"
+        },
         "fontFamily": {
           "title": "Primary UI font"
         }
