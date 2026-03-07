@@ -23,10 +23,10 @@ let lastLogBack;
 // Создаём глобальные переменные для хранения BrowserWindow
 let mainWindowObject;
 let mainWindow = require("./windows/mainWindow"); // Модуль для создания главного окна
-const DEFAULT_USER_AGENT = "FrogLauncher/v" + pjson.version;
+const DEFAULT_USER_AGENT = "RefClient/v" + pjson.version;
 
 // Е-Е-Едем
-console.log(colors.inverse("FrogLauncher v" + pjson.version + " | Hostname: " + os.hostname() + " | <> by Seeroy"));
+console.log(colors.inverse("RefClient v" + pjson.version + " | Hostname: " + os.hostname() + " | <> by Seeroy"));
 
 app.whenReady().then(() => {
     if (!isAppInDev) {

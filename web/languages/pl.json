@@ -1,0 +1,409 @@
+{
+  "info": {
+    "code": "pl",
+    "id": "pl",
+    "displayName": "Polski",
+    "displayNameEnglish": "Polish",
+    "author": "Seeroy"
+  },
+  "translations": {
+    "errors": {
+      "title": "Coś poszło nie tak!",
+      "exitCode": "Gra zakończyła się kodem wyjścia",
+      "list": [
+        "Ta wersja gry lub Twoje modyfikacje nie są kompatybilne z wersją Java, której używasz. Zanim napiszesz do programisty, koniecznie sprawdź listę swoich modów!",
+        "Wygląda na to, że wersja Java i wersja Forge nie są kompatybilne! Jeśli korzystasz z automatycznego wykrywania wersji Java, skontaktuj się z programistą, aby poprawić błąd.",
+        "Nie udało się przydzielić wymaganej ilości pamięci dla Java. Spróbuj zmniejszyć ilość pamięci w ustawieniach programu uruchamiającego",
+        "Nie można uruchomić pliku wykonywalnego JAR gry. Spróbuj ponownie uruchomić program uruchamiający lub ponownie zainstalować grę",
+        "Program uruchamiający nie może znaleźć pliku wykonywalnego Java! Jeśli korzystasz z automatycznego wykrywania wersji Java, skontaktuj się z programistą, aby poprawić błąd.",
+        "Konfiguracja gry lub pliki mogą zostać uszkodzone lub utworzone przez nowszą wersję gry. Zalecamy całkowitą ponowną instalację gry poprzez zmianę ścieżki folderu w ustawieniach programu uruchamiającego",
+        "Spróbuj ponownie uruchomić grę. Jeśli to nie pomoże, zalecana jest całkowita ponowna instalacja gry.",
+        "Podczas uruchamiania gry nie można było znaleźć niektórych klas Java. Problem może być związany z zainstalowanymi modami, sprawdź ich kompatybilność i wszystkie zależności",
+        "Nie udało się pobrać metadanych z systemu skórek. Spróbuj uruchomić grę później lub tymczasowo zmień swoje konto na inne"
+      ]
+    },
+    "accounts": {
+      "input": "Wpisz swój pseudonim",
+      "offline": "Nieaktywny",
+      "local": "Konto lokalne",
+      "microsoft": "Konto Microsoftu",
+      "elyby": "Konto Ely.by",
+      "frog": "Konto RefClient",
+      "unknown": "Nieznane konto",
+      "addingMs": "Dodawanie konta Microsoft",
+      "alreadyExists": "To konto zostało już dodane",
+      "added": "Dodano nowe konto"
+    },
+    "changelog": {
+      "title": "Aktualizuj historię"
+    },
+    "loading": {
+      "progress": "Ładowanie treści",
+      "failed": "Nie udało się załadować treści. Spróbuj ponownie później"
+    },
+    "elyby": {
+      "title": "Zaloguj się do swojego konta Ely.by",
+      "login": "Wpisz swój login",
+      "password": "Wpisz swoje hasło",
+      "totp": "Wprowadź kod TOTP",
+      "totpNotify": "Jeśli nie wiesz co to jest kod TOTP lub nie masz włączonego uwierzytelniania dwuskładnikowego nie wypełniaj tego pola",
+      "INVALID_CREDENTIALS": "Nieprawidłowy login lub hasło",
+      "REQUIRES_TOTP": "Nie określono tokena TOTP",
+      "repeat": "Musisz zalogować się ponownie"
+    },
+    "java": {
+      "preparing": "Przygotowanie Javy",
+      "unpacking": "Rozpakowywanie Javy",
+      "installed": "Zainstalowana nowa wersja",
+      "failed": "Podczas instalacji wystąpił błąd"
+    },
+    "commons": {
+      "login": "Login",
+      "newAccountAdded": "Dodano nowe konto",
+      "search": "Szukaj",
+      "install": "Zainstalować",
+      "open": "Otwarte",
+      "notSelected": "Nie wybrano",
+      "starting": "Teraz w nowy sposób",
+      "version": "Wersja",
+      "close": "Zamknąć",
+      "plsWait": "Proszę czekać",
+      "downloading": "Pobierać",
+      "installing": "Instalacja",
+      "news": "Aktualności",
+      "bigUpdates": "Najważniejsze aktualizacje",
+      "create": "Tworzyć",
+      "clickOrDrop": "Kliknij tutaj lub przeciągnij i upuść plik"
+    },
+    "packs": {
+      "importing": "Trwa import pakietu modów",
+      "imported": "Pakiet modów został pomyślnie zaimportowany",
+      "importFailed": "Import nie powiódł się",
+      "alreadyExists": "Ten pakiet modów jest już zainstalowany",
+      "created": "Pakiet modów został pomyślnie utworzony",
+      "installTo": "Zainstaluj w",
+      "defaultDir": "Standardowy katalog",
+      "filters": {
+        "title": "Filtry",
+        "type": "Pogląd",
+        "mods": "Modyfikacje",
+        "rp": "Pakiety zasobów",
+        "shaders": "Pakiety cieni",
+        "packs": "Zespoły",
+        "loaders": "Pobieracze",
+        "versions": "Wersje gry"
+      },
+      "install": "Zainstalować",
+      "updatePack": "Zaktualizuj paczkę modów",
+      "createPack": "Utwórz zespół",
+      "newPack": {
+        "title": "Nowa konstrukcja",
+        "input": "Wprowadź nazwę zespołu",
+        "description": "Z listy głównej wybierz wersję, na której chcesz zbudować projekt"
+      },
+      "updatePackM": {
+        "title": "Aktualizacja moda",
+        "disclaimer": "Aktualizacje modów są obecnie dostępne tylko w trybie ręcznym do testowania. Wybierz kompilację do przetestowania",
+        "check": "Sprawdź aktualizacje",
+        "checking": "Sprawdzanie dostępności aktualizacji",
+        "installing": "Instalowanie aktualizacji",
+        "found": "Znaleziony:",
+        "update": "Zaktualizuj wszystko"
+      }
+    },
+    "servers": {
+      "title": "Serwery",
+      "disclaimer": "Twórca programu uruchamiającego nie gwarantuje jakości i integralności serwerów",
+      "ipCopied": "IP skopiowane!",
+      "link": "Jak dodać swój serwer?"
+    },
+    "starter": {
+      "configuring": "Montaż konfiguracji",
+      "preparingGame": "Przygotowanie gry do premiery",
+      "starting": "Gra się rozpoczyna",
+      "started": "Gra się rozpoczęła",
+      "closing": "Gra się zamyka"
+    },
+    "updater": {
+      "available": "Dostępna nowa aktualizacja",
+      "downloading": "Pobieranie w toku",
+      "ready": "Po ponownym uruchomieniu programu uruchamiającego aktualizacja zostanie zainstalowana",
+      "changelog": "Lista zmian",
+      "install": "Zainstalować"
+    },
+    "settings": {
+      "title": "Ustawienia",
+      "sections": {
+        "personalization": "Rejestracja",
+        "game": "Rozgrywka",
+        "startup": "Opcje uruchamiania",
+        "java": "Opcje Javy",
+        "about": "O launcherze"
+      },
+      "game": {
+        "consoleOnStart": "Otwórz konsolę podczas uruchamiania gry",
+        "consoleOnCrash": "Otwórz konsolę w przypadku awarii",
+        "hideOnStart": "Ukryj program uruchamiający podczas uruchamiania gry",
+        "autoInstallDeps": "Automatycznie instaluj zależności dla modów (eksperymentalnie)"
+      },
+      "java": {
+        "auto": {
+          "title": "Automatycznie wybierz wersję Java",
+          "description": "Wersja jest wybierana i instalowana na podstawie oficjalnego manifestu Mojang"
+        },
+        "user": "Niestandardowa wersja Java",
+        "selectJavaExe": "Wybierz plik wykonywalny java.exe"
+      },
+      "personalization": {
+        "language": "Język launchera",
+        "mainColor": {
+          "title": "Główny kolor",
+          "description": "Twój launcher to Twoja osobowość"
+        },
+        "darkMode": {
+          "title": "Tryb koloru",
+          "description": "Program uruchamiający użyje wybranego trybu"
+        },
+        "background": {
+          "title": "Tło",
+          "description": "Dziś jest wielki zamek, czy piekielny świat?"
+        },
+        "disableCss": {
+          "title": "Wyłącz efekty CSS",
+          "description": "Wyłącza cienie i efekty filter()."
+        },
+        "disableAnimations": {
+          "title": "Wyłącz animacje",
+          "description": "Czas wszelkich animacji i przejść został skrócony do minimum"
+        },
+        "disableStartupAnimation": {
+          "title": "Wyłącz animację uruchamiania",
+          "description": "Usuwa animację uruchamiania, skracając w ten sposób czas ładowania programu uruchamiającego"
+        },
+        "fontFamily": {
+          "title": "Główna czcionka interfejsu"
+        }
+      },
+      "startup": {
+        "gameDirectory": {
+          "title": "Folder do przechowywania plików gry",
+          "description": "Będzie przechowywać wszystkie pliki gry, Java i inne"
+        },
+        "memory": {
+          "title": "Alokacja pamięci",
+          "description": "Zalecana wartość dla nowoczesnych wersji gry wynosi od 4 GB. Zmniejsz ten parametr, jeśli gra się zawiesza"
+        },
+        "fullscreen": {
+          "title": "Tryb gry na pełnym ekranie",
+          "description": "Flaga może nie działać z niektórymi kompilacjami"
+        },
+        "partialSplit": {
+          "title": "Oddzielne przechowywanie wersji",
+          "description": "Mody, zestawy, pakiety zasobów i inne pliki użytkownika będą przechowywane w osobnym folderze z każdą wersją (folder gry/strona główna)"
+        },
+        "fullSplit": {
+          "title": "Pełna separacja wersji (eksperymentalna)",
+          "description": "WSZYSTKIE pliki wymagane dla każdej wersji będą przechowywane w osobnym folderze (folder gry/strona główna)",
+          "description2": "Włącz tę funkcję tylko wtedy, gdy masz problemy z uruchomieniem niektórych wersji, gdy masz już dużą zainstalowaną bazę!",
+          "description3": "Każda wersja, gdy funkcja jest włączona, będzie zajmowała dużą ilość miejsca"
+        },
+        "multiplayerFix": {
+          "title": "Poprawka do gry sieciowej (eksperymentalna)",
+          "description": "Ustawienie ma na celu skorygowanie błędu „Gra sieciowa nie jest dostępna” podczas korzystania z wersji waniliowych >= 1.16.5",
+          "description2": "Jeśli napotkasz jakiekolwiek problemy ze skórkami i modami, zaleca się wyłączenie tej opcji"
+        },
+        "gameStartParams": {
+          "title": "Opcje wiersza poleceń gry",
+          "description": "Na przykład -Xms512M"
+        },
+        "javaStartParams": {
+          "title": "Opcje wiersza poleceń Java",
+          "description": "Na przykład -XX:+UseG1GC"
+        }
+      },
+      "about": {
+        "site": "Oficjalna strona internetowa",
+        "sources": "Kod źródłowy projektu",
+        "telegram": "Kanał telegramowy",
+        "vk": "Grupa VKontakte",
+        "debug": "Utwórz archiwum debugowania",
+        "history": "Historia aktualizacji programu uruchamiającego",
+        "eula": "Umowa użytkownika",
+        "privacyPolicy": "Polityka prywatności",
+        "lessDataCollection": {
+          "title": "Tryb paranoi",
+          "description": "W celu zapewnienia wsparcia technicznego, po włączeniu tej opcji na serwer zostanie przesłany minimalny zestaw danych: wersja Twojego programu oraz Twój unikalny identyfikator. Pełna lista danych zbieranych w przypadku wyłączenia tej opcji została szczegółowo opisana w naszej Polityce Prywatności. Możesz mieć pewność, że dbamy o Twoją prywatność"
+        }
+      }
+    },
+    "flymenu": {
+      "home": "Ekran główny",
+      "settings": "Ustawienia",
+      "packs": "Pakiety modów",
+      "servers": "Serwery",
+      "console": "Konsola",
+      "folder": "Folder z grą"
+    },
+    "flyout": {
+      "account": "KONTO",
+      "version": "WERSJA GRY",
+      "play": "Grać",
+      "stop": "Kompletny"
+    },
+    "versions": {
+      "releases": "Wydaj wersje",
+      "snapshots": "Migawki",
+      "favourites": "Ulubione",
+      "installed": "Zainstalowany",
+      "pack": "Montaż"
+    },
+    "versionsPosters": [
+      {
+        "version": "1.21",
+        "description": "Trudne wyzwania"
+      },
+      {
+        "version": "1.20",
+        "description": "Ścieżki i opowieści"
+      },
+      {
+        "version": "1.19",
+        "description": "Dzika aktualizacja"
+      },
+      {
+        "version": "1.18",
+        "description": "Jaskinie i skały (część 2)"
+      },
+      {
+        "version": "1.17",
+        "description": "Jaskinie i skały (część 1)"
+      },
+      {
+        "version": "1.16",
+        "description": "Aktualizacja Netheru"
+      },
+      {
+        "version": "1.15",
+        "description": "Bzyczące pszczoły"
+      },
+      {
+        "version": "1.14",
+        "description": "Wsie i rabunki"
+      },
+      {
+        "version": "1.13",
+        "description": "Aktualizacja wody"
+      },
+      {
+        "version": "1.12",
+        "description": "Kolorowy świat"
+      },
+      {
+        "version": "1.11",
+        "description": "Aktualizacja badań"
+      }
+    ],
+    "units": {
+      "size1": [
+        "KB",
+        "MB",
+        "GB",
+        "gruźlica",
+        "Pb",
+        "Ab",
+        "Zb",
+        "Yb"
+      ],
+      "size2": [
+        "KiB",
+        "MiB",
+        "Klin",
+        "Tyb",
+        "PiB",
+        "EIB",
+        "ZiB",
+        "YiB"
+      ],
+      "mb": "MB"
+    },
+    "frogAuth": {
+      "login": {
+        "title": "Zaloguj | ŻabaID"
+      },
+      "register": {
+        "title": "Rejestracja | ŻabaID",
+        "repeatPassword": "Wprowadź swoje hasło ponownie",
+        "go": "Utwórz konto!",
+        "success": {
+          "title": "Rejestracja przebiegła pomyślnie!",
+          "description": "Gotowe, utworzyłeś konto! Teraz musisz zalogować się przy użyciu danych podanych podczas rejestracji",
+          "button": "Cienki"
+        }
+      },
+      "goRegister": "Nie mam konta",
+      "goLogin": "Mam już konto",
+      "errors": {
+        "WRONG_CREDENTIALS": "Nieprawidłowy login lub hasło",
+        "PNG_REQUIRED": "Wymagane do wybrania pliku PNG",
+        "FILE_BITMAP_TOO_BIG": "Plik jest za duży lub za duży",
+        "UNKNOWN": "Wystąpił błąd podczas wykonywania akcji",
+        "ALREADY_EXISTS": "Ten użytkownik już istnieje. Wybierz inny pseudonim"
+      },
+      "skin": {
+        "title": "Dostosowywanie wyglądu",
+        "skin": "Skóra",
+        "cape": "Płaszcz"
+      },
+      "useButton": "System skórny FrogSkins",
+      "fieldsError": "Pola nie są wypełnione/wypełnione błędnie",
+      "passwordsComp": "Hasła nie pasują"
+    },
+    "console": {
+      "title": "Konsola",
+      "openDir": "Otwórz folder z logami",
+      "copy": "Skopiuj dziennik",
+      "copied": "Log skopiowany pomyślnie!"
+    },
+    "selectWorld": {
+      "title": "Wybierz świat",
+      "installHere": "Zainstaluj tutaj"
+    },
+    "packManager": {
+      "gamemodes": {
+        "0": "Przetrwanie",
+        "1": "Twórczy",
+        "2": "Przygoda"
+      },
+      "difficulty": {
+        "0": "Spokojny",
+        "1": "Normalna",
+        "2": "Trudny",
+        "3": "Hardkor"
+      },
+      "tabs": {
+        "worlds": "Światy",
+        "install": "Zainstalować",
+        "addFile": "Dodaj plik",
+        "updates": "Aktualizacje",
+        "import": "Import"
+      },
+      "installed": "Pomyślnie zainstalowano!",
+      "failedWorld": "Nie udało się zaprowadzić pokoju",
+      "successWorld": "Pokój został pomyślnie ustanowiony!",
+      "deleting": "Pakiet modów jest usuwany",
+      "deleted": "Usuwanie pakietu modów zakończone!",
+      "worldDeleted": "Świat został pomyślnie usunięty!",
+      "buttons": {
+        "export": "Eksportuj montaż",
+        "folder": "Otwórz folder",
+        "icon": "Zmień ikonę",
+        "play": "Uruchom kompilację",
+        "delete": "Usuwać"
+      },
+      "exportStarted": "Eksport rozpoczęty",
+      "exportCompleted": "Eksport zakończony pomyślnie!",
+      "importStarted": "Rozpoczęto importowanie",
+      "importCompleted": "Import zakończony pomyślnie!"
+    }
+  }
+}
