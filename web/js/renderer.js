@@ -25,14 +25,14 @@ const {GameDig} = require('gamedig');
 global.LAUNCHER_VERSION = packageJson.version;
 
 // Ссылки на сайт
-global.SITE_URL = "https://froglauncher.ru";
-global.CDN_URL = "https://cdn.froglauncher.ru";
-global.SKINS_API_URL = "https://skins.froglauncher.ru";
+global.SITE_URL = "https://refclient.ru";
+global.CDN_URL = "https://cdn.refclient.ru";
+global.SKINS_API_URL = "https://skins.refclient.ru";
 global.STATS_URL = "https://statscol.seeeroy.ru/save_fl?savedata=";
 //global.NEWS_URL = CDN_URL + "/news.json"; // Перемещено в index.ejs
 global.SERVERS_URL = CDN_URL + `/servers.json?_=${Date.now()}`;
 global.AUTHLIB_INJECTOR_URL = CDN_URL + "/authlib-injector.jar";
-global.REPO_NAME = "Seeroy/FrogLauncher2";
+global.REPO_NAME = "Seeroy/RefClient2";
 
 // Ссылка на Java
 global.JAVA_LIST_URL = "https://api.adoptium.net/v3/info/available_releases";

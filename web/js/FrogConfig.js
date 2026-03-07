@@ -3,7 +3,7 @@ let defaultConfig = {
     accounts: [],
     theme: {
         mode: 'dark',
-        color: "rgb(10, 115, 255)"
+        color: "rgb(255, 215, 0)"
     }
 };
 

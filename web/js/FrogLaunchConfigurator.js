@@ -128,10 +128,10 @@ class FrogLaunchConfigurator {
         configResult.window.fullscreen = FrogConfig.read("gameInFullscreen");
         // Multiplayer fix
         if (FrogConfig.read("multiplayerFix") === true && FrogAccountsManager.getAccount(FrogAccountsManager.getActiveAccount()).type === "local") {
-            configResult.customArgs.push("-Dminecraft.api.auth.host=https://froglauncher.fix");
-            configResult.customArgs.push("-Dminecraft.api.account.host=https://froglauncher.fix");
-            configResult.customArgs.push("-Dminecraft.api.session.host=https://froglauncher.fix");
-            configResult.customArgs.push("-Dminecraft.api.services.host=https://froglauncher.fix");
+            configResult.customArgs.push("-Dminecraft.api.auth.host=https://refclient.fix");
+            configResult.customArgs.push("-Dminecraft.api.account.host=https://refclient.fix");
+            configResult.customArgs.push("-Dminecraft.api.session.host=https://refclient.fix");
+            configResult.customArgs.push("-Dminecraft.api.services.host=https://refclient.fix");
         }
         // Download fix
         // Раздельное хранение

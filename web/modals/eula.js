@@ -1,7 +1,7 @@
 $(document).ready(function() {
     if(FrogConfig.read("eulaConfirmed", false) !== true){
         $("#modal-eula").show();
-        $("#modal-eula .data").load("https://froglauncher.ru/privacy-policy");
+        $("#modal-eula .data").load("https://refclient.ru/privacy-policy");
     }
 })
 

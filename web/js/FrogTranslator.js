@@ -108,7 +108,7 @@ class FrogTranslator {
 
     // Задать стандартный язык лаунчера
     static setDefaultLanguage = () => {
-        let defaultValue = "ru";
+        let defaultValue = "pl";
         let defaultSystem = FrogTranslator.getSystemLanguage();
         if (FrogTranslator.isLanguageExists(defaultSystem)) {
             defaultValue = defaultSystem;

@@ -28,7 +28,7 @@
       "local": "Local account",
       "microsoft": "Microsoft Account",
       "elyby": "Ely.by account",
-      "frog": "FrogLauncher account",
+      "frog": "RefClient account",
       "unknown": "Unknown account",
       "addingMs": "Adding a Microsoft Account",
       "alreadyExists": "This account has already been added",

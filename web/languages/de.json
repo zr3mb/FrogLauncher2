@@ -28,7 +28,7 @@
       "local": "Lokales Konto",
       "microsoft": "Microsoft Konto",
       "elyby": "Ely.by Konto",
-      "frog": "FrogLauncher Konto",
+      "frog": "RefClient Konto",
       "unknown": "Unbekanntes Konto",
       "addingMs": "Hinzufügen eines Microsoft Kontos",
       "alreadyExists": "Dieses Konto ist bereits hinzugefügt worden",
