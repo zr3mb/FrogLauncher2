@@ -11,16 +11,16 @@ class FrogStarter {
         this.versionNumber = versionNumber;
         this.config = {};
         this.gameRoot = "";
-
+    }
 
     static kill = () => {
         if (gamePid === false || gameStarting === false) {
             return false;
-
+        }
         treeKill(gamePid);
         killedManually = true;
         return true;
-
+    }
 
     prepare = async () => {
         this.gameRoot = FrogUtils.getGameRoot(this.versionId);
@@ -38,7 +38,7 @@ class FrogStarter {
             this.versionNumber = modpackData.baseVersion.number;
             this.versionId = modpackData.baseVersion.full;
             this.versionType = modpackData.baseVersion.type;
-
+        }
 
         // Готовим UI
         FrogCollector.writeLog(`Starter: id=${this.versionId}; version=${this.versionNumber} type=${this.versionType}`);
@@ -52,7 +52,7 @@ class FrogStarter {
         let javaVersion = await FrogJavaManager.gameVersionToJavaVersion(this.versionNumber);
         if (javaVersion === false) {
             return false;
-
+        }
         FrogCollector.writeLog(`Starter: Using Java ${javaVersion}`);
         FrogCollector.writeLog(`Starter: Trying to install Java`);
 
@@ -64,7 +64,7 @@ class FrogStarter {
         if (javaPath === false) {
             FrogCollector.writeLog(`Starter: Java installation failed! ${javaPath}`);
             return false;
-
+        }
         FrogCollector.writeLog(`Starter: Java installation completed`);
 
         // Получаем конфигурацию
@@ -72,21 +72,20 @@ class FrogStarter {
         if(!configuration){
             FrogCollector.writeLog(`Starter: Error happend with launch config!`);
             return false;
-
+        }
         this.config = configuration;
         FrogCollector.writeLog(`Starter: Configuration ready`);
 
         // Если версия ForgeOptiFine - скачиваем/переносим файл в моды
         if(this.versionType === "forgeOptiFine"){
-            FrogCollector.writeLog(`Starter: Preparing OptiFine`);
             await FrogAssets.setupOptiFine(this.versionNumber, this.gameRoot);
-
+        }
 
         if (IS_APP_IN_DEV) {
             console.log(configuration);
-
+        }
         return configuration;
-
+    }
 
     launch = async () => {
         let useProgress = false;
@@ -107,29 +106,29 @@ class FrogStarter {
             FrogErrorsParser.parse(e);
             if (IS_APP_IN_DEV) {
                 console.log(e);
-
+            }
             FrogCollector.writeLog(e);
         });
         launcher.on('data', (e) => {
             FrogErrorsParser.parse(e);
             if (IS_APP_IN_DEV) {
                 console.log(e);
-
+            }
             // Проверки для смены статуса запуска
             if (e.match(/Sound engine started/gim) !== null || e.match(/OpenAL initialized/gim) !== null || e.match(/Created\: 512x512 textures-atlas/gim) !== null) {
                 FrogFlyout.setText(MESSAGES.starter.started, versionDisplayName);
-
+            }
             if (e.match(/Stopping!/gim) !== null) {
                 FrogFlyout.setText(MESSAGES.starter.closing, versionDisplayName);
                 FrogUI.appearMainWindow();
-
+            }
             FrogCollector.writeLog(e);
         });
         launcher.on('close', (exitCode) => {
             // Удаляем OptiFine
             if(this.versionType === "forgeOptiFine"){
                 FrogAssets.removeOptiFine(this.versionNumber, this.gameRoot);
-
+            }
 
             gamePid = false;
             gameStarting = false;
@@ -150,12 +149,12 @@ class FrogStarter {
                 FrogErrorsParser.parse("", exitCode);
                 if (exitCode > 0 && exitCode !== 127 && exitCode !== 255 && exitCode !== 1 && FrogConfig.read("consoleOnCrash") === true) {
                     FrogModals.switchModal("console");
-
-
+                }
+            }
             killedManually = false;
             if (IS_APP_IN_DEV) {
                 console.log("Game exit code: " + exitCode);
-
+            }
             FrogCollector.writeLog("Game exit code: " + exitCode);
         });
         launcher.on("arguments", (e) => {
@@ -166,12 +165,12 @@ class FrogStarter {
             // Показываем консоль
             if (FrogConfig.read("consoleOnStart") === true) {
                 FrogModals.switchModal("console");
-
+            }
             setTimeout(() => {
                 // Скрываем окно, если включено в настройках
                 if (gameStarting && FrogConfig.read("hideLauncherOnStart") === true) {
                     FrogUI.disappearMainWindow();
-
+                }
             }, 4000);
             FrogFlyout.changeMode("spinner");
             FrogFlyout.setText(MESSAGES.starter.starting, versionDisplayName);
@@ -180,19 +179,19 @@ class FrogStarter {
             if (e.type === "assets") {
                 if (startAssetsInterval === 0) {
                     startAssetsInterval = Date.now();
-
+                }
                 if (assetsVerifyOffset === 0 && (Date.now() - startAssetsInterval) > 1000) {
                     assetsVerifyOffset = (e.task - 1);
-
+                }
             } else {
                 assetsVerifyOffset = 0;
-
+            }
             if (useProgress === true) {
                 let taskOffset = e.task - assetsVerifyOffset;
                 let totalOffset = e.total - assetsVerifyOffset;
                 let percent = Math.round((taskOffset * 100) / totalOffset);
                 FrogDownloader.updateDownloadUIText(e.type, percent, taskOffset, totalOffset);
-
+            }
         });
         launcher.on('download-status', (e) => {
             if ((e.total / 1024 / 1024) >= 4) {
@@ -201,10 +200,10 @@ class FrogStarter {
                 FrogDownloader.updateDownloadUI(e.name, percent, e.current, e.total);
             } else {
                 useProgress = true;
-
+            }
         });
         return true;
-
+    }
 
     // Просто запустить версию по ID
     static simpleStart = async (versionId) => {
@@ -214,58 +213,7 @@ class FrogStarter {
 
         if (parsedVersion.type === "pack") {
             await FrogPacks.verifyAndInstall(parsedVersion.name);
-
-        return starter.launch();
-
-
-    // Start with server refmc.pl
-    static startToRefMc = async () => {
-        let versionId = FrogVersionsManager.getActiveVersion();
-        if (FrogAccountsManager.getActiveAccount() === "none" || !versionId) {
-            return false;
-
-        let parsedVersion = FrogVersionsManager.parseVersionID(versionId);
-        let starter = new FrogStarter(versionId, parsedVersion.type, parsedVersion.name);
-        await starter.prepare();
-
-        if (parsedVersion.type === "pack") {
-            await FrogPacks.verifyAndInstall(parsedVersion.name);
-        // Add server connection arguments
-        if (starter.config && starter.config.quickPlay) {
-            starter.config.quickPlay = { type: 'multiplayer', identifier: 'refmc.pl' };
-        } else {
-            starter.config.quickPlay = { type: 'multiplayer', identifier: 'refmc.pl' };
-
-
-        // Also add the legacy server arguments to be safe
-        if (!starter.config.customArgs) starter.config.customArgs = [];
-        starter.config.customArgs.push("--server", "refmc.pl");
-
-        return starter.launch();
-
-}
-    // Start with server refmc.pl
-    static startToRefMc = async () => {
-        let versionId = FrogVersionsManager.getActiveVersion();
-        if (FrogAccountsManager.getActiveAccount() === "none" || !versionId) {
-            return false;
         }
-        let parsedVersion = FrogVersionsManager.parseVersionID(versionId);
-        let starter = new FrogStarter(versionId, parsedVersion.type, parsedVersion.name);
-        await starter.prepare();
-
-        if (parsedVersion.type === "pack") {
-            await FrogPacks.verifyAndInstall(parsedVersion.name);
-        }
-
-        // Add server connection arguments
-        if (!starter.config) starter.config = {};
-        starter.config.quickPlay = { type: 'multiplayer', identifier: 'refmc.pl' };
-
-        // Also add the legacy server arguments to be safe
-        if (!starter.config.customArgs) starter.config.customArgs = [];
-        starter.config.customArgs.push("--server", "refmc.pl");
-
         return starter.launch();
     }
 }
