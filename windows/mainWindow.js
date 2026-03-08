@@ -13,7 +13,7 @@ const MW_OPTIONS = {
     maximizable: true,
     autoHideMenuBar: true,
     frame: false,
-    transparent: true,
+    transparent: false,
     webPreferences: {
         nodeIntegration: true,
         contextIsolation: false,
@@ -28,6 +28,7 @@ exports.create = (cb) => {
 
     winObj.once("ready-to-show", () => {
         winObj.show();
+        winObj.webContents.openDevTools();
         cb(winObj);
     });
 };

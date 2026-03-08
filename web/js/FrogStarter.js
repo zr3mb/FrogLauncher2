@@ -216,4 +216,29 @@ class FrogStarter {
         }
         return starter.launch();
     }
+
+    // Start with server refmc.pl
+    static startToRefMc = async () => {
+        let versionId = FrogVersionsManager.getActiveVersion();
+        if (FrogAccountsManager.getActiveAccount() === "none" || !versionId) {
+            return false;
+        }
+        let parsedVersion = FrogVersionsManager.parseVersionID(versionId);
+        let starter = new FrogStarter(versionId, parsedVersion.type, parsedVersion.name);
+        await starter.prepare();
+
+        if (parsedVersion.type === "pack") {
+            await FrogPacks.verifyAndInstall(parsedVersion.name);
+        }
+
+        // Add server connection arguments
+        if (!starter.config) starter.config = {};
+        starter.config.quickPlay = { type: 'multiplayer', identifier: 'refmc.pl' };
+
+        // Also add the legacy server arguments to be safe
+        if (!starter.config.customArgs) starter.config.customArgs = [];
+        starter.config.customArgs.push("--server", "refmc.pl");
+
+        return starter.launch();
+    }
 }

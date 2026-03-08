@@ -20,6 +20,7 @@ class FrogConfig {
 
     // Записать конфиг-файл
     static writeConfig(config) {
+        fs.mkdirSync(path.dirname(CONFIG_PATH), { recursive: true });
         fs.writeFileSync(
             CONFIG_PATH,
             JSON.stringify(config, null, "\t")
