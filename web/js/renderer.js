@@ -52,9 +52,9 @@ if (IS_APP_IN_DEV) {
 global.USERDATA_PATH = path.normalize(ipcRenderer.sendSync("get-userdata-path"));
 global.CONFIG_PATH = path.join(global.USERDATA_PATH, "config.json");
 if (process.platform === "win32") {
-    global.DOT_MC_PATH = path.join(os.homedir(), "AppData", "Roaming", ".minecraft");
+    global.DOT_MC_PATH = path.join(os.homedir(), "AppData", "Roaming", ".refclient");
 } else {
-    global.DOT_MC_PATH = path.join(os.homedir(), ".minecraft");
+    global.DOT_MC_PATH = path.join(os.homedir(), ".refclient");
 }
 
 const animateCSS = (element, animation, fast = true, prefix = "animate__") => {

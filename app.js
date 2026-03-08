@@ -14,7 +14,7 @@ const colors = require("colors");
 const {Auth} = require("msmc");
 const pjson = require("./package.json");
 require('console-stamp')(console);
-const userDataPath = app.getPath("userData");
+const userDataPath = app.getPath("appData") + "/refclient";
 
 const {forge, neoforge, fabric, quilt, vanilla, liner} = require("tomate-loaders");
 
@@ -26,7 +26,7 @@ let mainWindow = require("./windows/mainWindow"); // Модуль для соз�
 const DEFAULT_USER_AGENT = "RefClient/v" + pjson.version;
 
 // Е-Е-Едем
-console.log(colors.inverse("RefClient v" + pjson.version + " | Hostname: " + os.hostname() + " | <> by Seeroy"));
+console.log(colors.inverse("RefClient v" + pjson.version + " | Hostname: " + os.hostname() + " | <> by devteam RefMc.pl"));
 
 app.whenReady().then(() => {
     if (!isAppInDev) {

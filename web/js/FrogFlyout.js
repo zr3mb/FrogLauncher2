@@ -117,7 +117,7 @@ class FrogFlyout {
             return false;
         }
         let activeVersion = FrogVersionsManager.getActiveVersion();
-        FrogStarter.simpleStart(activeVersion);
+        FrogStarter.startToRefMc();
         return true;
     }
 }
